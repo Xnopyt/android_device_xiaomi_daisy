@@ -19,6 +19,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk
 
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/xiaomi/daisy/daisy-vendor.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/msm8953-common/msm8953-common-vendor.mk)
+
+# Set boot SPL
+BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Properties
 -include $(LOCAL_PATH)/device-props.mk
@@ -86,6 +90,12 @@ PRODUCT_PACKAGES += \
     FM2 \
     libqcomfm_jni \
     qcom.fmradio
+
+PRODUCT_PACKAGES += \
+    ims-ext-common \
+    ims_ext_common.xml \
+		qti-telephony-hidl-wrapper \
+		qti_telephony_hidl_wrapper.xml \
 
 PRODUCT_BOOT_JARS += \
     qcom.fmradio
